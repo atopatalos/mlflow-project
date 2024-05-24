@@ -1,0 +1,95 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rice Leaf classification</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <div>
+        <input type="file" id="fileInput" onchange="previewFile()"><br>
+        <button class="bg-blue-500 disabled:bg-gray-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id='button-upload' value="Upload Image" onclick="uploadFile()"> 
+            Upload
+        </button>
+        <button class="bg-blue-500 disabled:bg-gray-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id='button-classify' value="Upload Image" onclick="classify()"> 
+            Classify
+        </button>
+        <p id="serverMsg"></p>
+        <img class="h-[20%] w-[20%]">
+        
+    </div>
+    </body>
+
+    <script type="text/javascript">
+        var fileLocation =  ''
+        document.getElementById('button-upload').disabled =  true
+        document.getElementById('button-classify').disabled =  true
+        function previewFile() {
+            const preview = document.querySelector('img');
+            document.getElementById("serverMsg").innerHTML = 'Previewing click to upload ....';
+
+            var file = document.getElementById('fileInput').files[0];
+            const reader = new FileReader();
+            reader.addEventListener("load", function() {
+                preview.src = reader.result; // show image in <img> tag
+            }, false);
+            if (file) {
+                reader.readAsDataURL(file);
+                document.getElementById('button-upload').disabled =  false
+
+            }
+        }
+    
+        function uploadFile(file) {
+            document.getElementById("serverMsg").innerHTML = 'uploading ....';
+
+            var file = document.getElementById('fileInput').files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+                fetch('/upload', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("serverMsg").innerHTML = data.message;
+                        document.getElementById('button-classify').disabled =  false
+                        fileLocation = data.image
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        }
+
+
+
+        function classify(file) {
+            document.getElementById("serverMsg").innerHTML = 'Classifying Image ....';
+            if (fileLocation) {
+                console.log(fileLocation)
+                fetch('/classify', {
+                        method: 'POST',
+                        headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({image: fileLocation})
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("serverMsg").innerHTML = data.message + ' ----  class : ' + data.imageClass;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        }
+    </script>
+</html>

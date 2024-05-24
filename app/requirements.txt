@@ -1,0 +1,13 @@
+torchvision
+mlflow
+torch
+matplotlib
+tqdm
+argparse
+numpy
+Pillow
+pandas
+fastapi
+jinja2
+uvicorn
+python-multipart
