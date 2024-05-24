@@ -1,4 +1,4 @@
-# Rice Leaf Classification Project
+# Rice Leaf Classification / Detection Disease Project
 
 ## Overview
 
@@ -9,6 +9,9 @@ b)It consists of two main components: model development and an API for image cla
 ## Model Development
 
 The `model_dev` directory contains scripts for model development:
+- Dockerfile         : to build a Docker image.
+- requirements.txt   : requirements of the system
+- start.sh           : to run a Docker container interactively while mapping local directories to directories inside the container.
 
 ### Installation and Setup
 
