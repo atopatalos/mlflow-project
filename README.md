@@ -2,7 +2,9 @@
 
 ## Overview
 
-This project aims to classify images of rice leaves into different categories, such as Leaf Blast, Healthy, Hispa, and Brown Spot. It consists of two main components: model development and an API for image classification.
+This project is an experiment which :
+a)aims to classify images of rice leaves into different categories, such as Leaf Blast, Healthy, Hispa, and Brown Spot. 
+b)It consists of two main components: model development and an API for image classification using FastAPI.
 
 ## Model Development
 
