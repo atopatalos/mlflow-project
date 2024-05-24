@@ -17,7 +17,7 @@ The `model_dev` directory contains scripts for model development:
 - It is advisable to have a virtual machine running such as digital ocean droplet with at lesat RAM 8GB.
 
 
-- Ensure your dataset is placed in the specified folder.
+- Ensure your dataset of the images is placed in the specified folder. There should be four folders.
  > **Note**: The foldername `LabelledRice` has been changed to `DataLabelledRice`.
 <!-- - Create an `mlruns` folder for MLflow to store its runs. -->
 
