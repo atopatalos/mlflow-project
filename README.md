@@ -167,3 +167,25 @@ The `api` directory hosts the API for image classification:
 6. **Go to `http://0.0.0.0:80`**:
 
     You can then select an image from your drive to classify. Simply upload the image and proceed to classification.
+
+### How to Access the MLFLOW
+If you are using Digital Ocean droplet or any other container/virtual environment :
+   
+   - Be sure that the docker image for the model is running
+   - Note down the IP address :
+       System load:  0.38               Processes:             150
+       Usage of /:   0.9% of 153.94GB   Users logged in:       0
+       Memory usage: 2%                 IPv4 address for eth0: 104.248.89.219
+       Swap usage:   0%                 IPv4 address for eth0: 10.18.0.6
+   - Open a web browser and access the mlflow : https://104.248.89.219:5000
+
+### How to Access the web based image classifier
+
+   - Be sure that the docker image for the app is running
+   - Note down the IP address :
+       System load:  0.38               Processes:             150
+       Usage of /:   0.9% of 153.94GB   Users logged in:       0
+       Memory usage: 2%                 IPv4 address for eth0: 104.248.89.219
+       Swap usage:   0%                 IPv4 address for eth0: 10.18.0.6
+   - Open a web browser and access the mlflow : https://104.248.89.219:80
+
